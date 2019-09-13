@@ -54,9 +54,9 @@ router.post('/', function(req, res, next) {
 });
 
 /* User Logout */
-router.post('/logout', function(req, res, next) {
+router.get('/logout', function(req, res, next) {
   dbModel.User.findOne({
-    where: {api_token: req.body.token},
+    where: {api_token: req.headers.token},
     attributes: ['id','name','email','password']
   }).then(userData => {
     if(userData){
